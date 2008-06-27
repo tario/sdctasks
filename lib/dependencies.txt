@@ -1,0 +1,5 @@
+Place here the assembly of source analysis.
+
+The assembly can be acquired from http://code.msdn.microsoft.com/sourceanalysis.
+
+In order to use the SFX Task you need to have win rar installed.

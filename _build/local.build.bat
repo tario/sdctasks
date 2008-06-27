@@ -1,0 +1,1 @@
+msbuild ..\code\Southworks.Sdc.Tasks.sln

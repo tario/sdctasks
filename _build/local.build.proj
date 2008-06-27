@@ -1,0 +1,89 @@
+<Project DefaultTargets="Publish" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
+
+  <ItemGroup>  
+    <SourceCodeFiles Include="..\**\*.cs"/>
+    <AssemblyInfos   Include="..\**\AssemblyInfo.cs"/>
+    <SolutionFiles   Include="..\**\*.sln"/>
+  </ItemGroup>
+
+  <Target Name="RunSourceAnalysis">
+    
+    <SourceAnalysisTask
+          ProjectFullPath="..\code\"
+          SourceFiles="@(SourceCodeFiles)"
+          ForceFullAnalysis="True"
+          TreatErrorsAsWarnings="True"
+          CacheResults="True"/>
+    
+  </Target>
+  
+  <Target Name="UpdateAssemblyInfos" DependsOnTargets="RunSourceAnalysis">
+    <UpdateAssemblyinfo Include="@(AssemblyInfos)"
+                        AssemblyCopyright="Copyright © 2008 Southworks."
+                        AssemblyCompany="Southworks."
+                        AssemblyProduct="Southworks Software Developement Center Tasks." />
+  </Target>
+  
+  <Target Name="SetCopyrightHeaders" DependsOnTargets="UpdateAssemblyInfos">
+    <AddCopyrightHeaders Include="@(SourceCodeFiles)"
+                         CopyrightHeaderLocation="etc\copyright.txt"/>
+
+  </Target>
+  
+  <Target Name="Compile" DependsOnTargets="SetCopyrightHeaders">
+    <MSBuild Projects="@(SolutionFiles)" Properties="Configuration=Release;DefineConstants=TRACE;DEBUG;CODE_ANALYSIS" />    
+  </Target>
+
+  <Target Name="GeneratePackagingCopy" DependsOnTargets="Compile">
+    
+    <MakeDir Directories="..\_temp\"/>
+    
+    <CreateItem Include="..\**\Release\*.dll" Exclude="..\**\Release\Microsoft.VisualStudio.Coverage.Analysis.dll;..\**\Release\Microsoft.SourceAnalysis.dll">
+      <Output ItemName="BinFiles" TaskParameter="Include"/>
+    </CreateItem>
+
+    <CreateItem Include="..\docs\*.*" Exclude="..\docs\readme.txt;..\docs\dependencies.txt">
+      <Output ItemName="DocFiles" TaskParameter="Include"/>
+    </CreateItem>
+
+    <CreateItem Include="..\docs\readme.txt">
+      <Output ItemName="ReadMeFile" TaskParameter="Include"/>
+    </CreateItem>
+
+    <CreateItem Include="..\docs\dependencies.txt">
+      <Output ItemName="DependenciesFile" TaskParameter="Include"/>
+    </CreateItem>
+    
+    <Copy SourceFiles="@(BinFiles)" DestinationFolder="..\_temp\bin\"/>
+    <Copy SourceFiles="@(DocFiles)" DestinationFolder="..\_temp\docs\"/>
+    <Copy SourceFiles="@(ReadMeFile)" DestinationFolder="..\_temp\"/>
+    <Copy SourceFiles="@(DependenciesFile)" DestinationFolder="..\_temp\lib"/>
+    
+  </Target>
+  
+  <Target Name="Package" DependsOnTargets="GeneratePackagingCopy">
+    <GenerateSFX SourceDirectory="..\_temp\"
+                 SFXFileName="sdcTasks.exe"
+                 ScriptCommentFile="etc\sfxCommentScript.txt"
+                 ImageFile="etc\vertical.bmp"
+                 IconFile="etc\icon.ico"
+                 DeleteFilesAfterArchiving="true"/>
+
+    <RemoveDir Directories="..\_temp\"/>
+  </Target>
+
+  <Target Name="Publish" DependsOnTargets="Package">
+    
+    <!--<Copy SourceFiles="$(CCNetWorkingDirectory)\_build\{packagingFolder}\{DropName}.Zip|Msi"
+      DestinationFiles="$(DropDirectory)\$(CCNetLabel)\{DropName}.Zip|Msi" />
+    
+    <Delete Files="$(CCNetWorkingDirectory)\_build\{packagingFolder}\{DropName}.Zip|Msi"/>-->
+    
+  </Target>
+
+  <UsingTask AssemblyFile="..\code\Southworks.Sdc.Tasks\bin\Debug\Southworks.Sdc.Tasks.dll" TaskName="AddCopyrightHeaders"/>
+  <UsingTask AssemblyFile="..\code\Southworks.Sdc.Tasks\bin\Debug\Southworks.Sdc.Tasks.dll" TaskName="UpdateAssemblyInfo"/>
+  <UsingTask AssemblyFile="..\code\Southworks.Sdc.Tasks\bin\Debug\Southworks.Sdc.Tasks.dll" TaskName="RemoveDuplicatedFileNames"/>
+  <UsingTask AssemblyFile="..\code\Southworks.Sdc.Tasks\bin\Debug\Southworks.Sdc.Tasks.dll" TaskName="SourceAnalysisTask"/>
+  <UsingTask AssemblyFile="..\code\Southworks.Sdc.Tasks\bin\Debug\Southworks.Sdc.Tasks.dll" TaskName="GenerateSFX"/>
+</Project>

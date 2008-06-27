@@ -1,0 +1,46 @@
+;The comment below contains SFX script commands
+
+Path=C:\Southworks.SDCTasks
+SavePath
+Title=Extract the Southworks SDC Tasks for MSBuild
+Text
+{
+Southworks SDC Tasks for MSBuild - Copyright (c) 2008
+
+
+These are the tasks the conforms our internal build process. The SDC tasks are a collection of MSBuild tasks that we designed to make our development team life easy. You can use these tasks in your own MSBuild projects, use them standalone or use them as further reference to write your own tasks.
+
+
+There are 8 tasks included in this library and the number continuously grow , in the v1 there are tasks for:  Add copyright headers to your files, run MSTests, generate code coverage reports from your MSTests , Run Source Analysis, Update your assembly info, remove duplicated files from a file collection, etc..
+
+
+Our deliverables includes a MSI containing the bin files, documentation (chm) also the source code is available on this site.
+
+
+Check the Issue Tracker for bugs and known issues. I'll try and keep this up to date.
+}
+License=Southworks SDC Tasks for MSBuild - License Agreement
+{
+Copyright (c) 2008 Southworks
+
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+}
