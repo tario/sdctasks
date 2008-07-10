@@ -32,8 +32,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocxConverter.Log, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\DocxConverter.Log.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Build.Framework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Build.Utilities" />
+    <Reference Include="Microsoft.Practices.DocxAuthoring, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Microsoft.Practices.DocxAuthoring.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.DocxConverter, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\Microsoft.Practices.DocxConverter.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SourceAnalysis, Version=4.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Microsoft.SourceAnalysis.dll</HintPath>
@@ -57,10 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddCopyrightHeaders.cs" />
+    <Compile Include="CompileChm.cs" />
     <Compile Include="EnableWebAppCodeCoverage.cs" />
     <Compile Include="GenerateSFX.cs" />
     <Compile Include="Helpers\ExtendedCommandLineBuilder.cs" />
     <Compile Include="GenerateCodeCoverage.cs" />
+    <Compile Include="PrepareDocxToChm.cs" />
     <Compile Include="RemoveDuplicatedFileNames.cs" />
     <Compile Include="RunMSTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

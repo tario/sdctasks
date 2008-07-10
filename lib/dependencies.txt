@@ -3,3 +3,7 @@ Place here the assembly of source analysis.
 The assembly can be acquired from http://code.msdn.microsoft.com/sourceanalysis.
 
 In order to use the SFX Task you need to have win rar installed.
+
+In order to use the PrepareDocxToChm Task you need the install p&p Documentation Tools
+
+The assebly can be acquired from %ProgramFiles%\Microsoft DocTools\Document Converter
